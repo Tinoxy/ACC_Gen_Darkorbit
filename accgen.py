@@ -102,4 +102,4 @@ def register(Username,Password,Serverid,TwoCaptchaToke):
     }
 
     requests.get(f'https://{server_Link}/indexInternal.es?action=internalStart', payload_inernalStart_gbl1, cookies=server_company.cookies)
-
+    requests.get(f'https://{server_Link}.darkorbit.com/flashAPI/dailyLogin.php?doBook=1')
