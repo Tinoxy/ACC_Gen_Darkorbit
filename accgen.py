@@ -27,7 +27,6 @@ def register(Username,Password,Serverid):
                 # this will only run when the line is NOT empty
 
                 data, _ = line.split(';')
-                print(data)
 
     solver = TwoCaptcha(data)
 
