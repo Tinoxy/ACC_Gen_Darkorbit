@@ -12,16 +12,24 @@ def random_char(char_num):
     return ''.join(random.choice(string.ascii_letters) for _ in range(char_num))
 
 
-def register(Username,Password,Serverid,TwoCaptchaToke):
+def register(Username,Password,Serverid):
 
     url = "https://www.darkorbit.com/"
     token = requests.get(url, headers=headers)
     soup = BeautifulSoup(token.content, 'lxml')
     get = soup.find('form', attrs={'class': 'bgc_signup_form'}) ['action']
 
+    with open("api.txt") as f:
+        for i, line in enumerate(f):
+            line = line.strip()
 
+            if len(line) > 0:
+                # this will only run when the line is NOT empty
 
-    solver = TwoCaptcha(TwoCaptchaToke)
+                data, _ = line.split(';')
+                print(data)
+
+    solver = TwoCaptcha(data)
 
     g_recaptcha = ''
     try:

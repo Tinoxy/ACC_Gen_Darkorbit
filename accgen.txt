@@ -1,1 +1,1 @@
-ACC:PW:ge1:TwoCaptcha_TOKEN;
+ACC:PW:ge1;
