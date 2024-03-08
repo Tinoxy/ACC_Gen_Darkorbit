@@ -32,8 +32,8 @@ def register(Username,Password,Serverid):
 
     g_recaptcha = ''
     try:
-        result = solver.recaptcha(
-            sitekey='6LfkgUIUAAAAAETf-SZEx_exK2SEPirE8i2RZQ_U',
+        result = solver.hcaptcha(
+            sitekey='fba93119-6a3d-4fbf-8de3-e0d9d2948c45',
             url='https://www.darkorbit.com/',
             invisible=1)
 
@@ -48,7 +48,8 @@ def register(Username,Password,Serverid):
     'password': Password,
     'email': random_char(12) + "@gmail.com",
     'termsAndConditions': '1',
-    'g-recaptcha-response': g_recaptcha
+    'g-recaptcha-response': g_recaptcha,
+    'h-captcha-response': g_recaptcha
     }
 
 
@@ -92,21 +93,17 @@ def register(Username,Password,Serverid):
     server_company = requests.post(f"https://{Serverid}.darkorbit.com//{serverid}")
 
     server_Link = server_company.url.rsplit("/",2)[1]
-
+    print(server_Link)
 
 
     payload_reg_server = {
         'action': 'internalCompanyChoose',
         'subaction': 'factionChoose',
-        'factionID': '2'
+        'factionID': '1'
     }
 
 
     requests.get(f'https://{server_Link}/indexInternal.es?action=internalCompanyChoose&subaction=factionChoose&factionID=1', payload_reg_server, cookies=server_company.cookies)
 
-    payload_inernalStart_gbl1 = {
-    'action': 'internalStart'
-    }
+    requests.get(f'https://{server_Link}/flashAPI/dailyLogin.php?doBook=1')
 
-    requests.get(f'https://{server_Link}/indexInternal.es?action=internalStart', payload_inernalStart_gbl1, cookies=server_company.cookies)
-    requests.get(f'https://{server_Link}.darkorbit.com/flashAPI/dailyLogin.php?doBook=1')
